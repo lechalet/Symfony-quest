@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>All TV shows: </h1>
+        {% for program in programs %}
+            <div>
+                <h2>
+                    {{ loop.index }} / <a href="{{ path('wild_show', { 'slug': hyphenizedPrograms[loop.index - 1] }) }}">{{ program.title }}</a>
+                </h2>
+                <p>Category: <a href="{{ path('show_category', { 'categoryName': hyphenizedCategories[loop.index - 1] }) }}">{{ program.category.name }}</a></p>
+                <p>{{ program.synopsis }}</p>
+            </div>
+        {% else %}
+            No TV show found.
+        {% endfor %}
+        <a href="{{ path('app_index') }}">
+            Back to home
+        </a>
+    </div>
+{% endblock %}
